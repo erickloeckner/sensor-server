@@ -1,0 +1,4 @@
+debug = false
+port = 8000
+value_count = 240
+value_default = 75.0
