@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <title>Sensor Server</title>
+  </head>
+  <body>
+    <script type="module">
+      import init from './pkg/wasm.js';
+      async function run() {
+        await init();
+      }
+      run();
+    </script>
+    sensor server
+    <div id="main_div">
+      <div id="graph">
+        <svg id="graph_svg" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <defs id="main_defs">
+            <linearGradient id="gradient_line_base">
+              <stop style="stop-color:#0022c5;stop-opacity:1;" offset="0" id="bottom" />
+              <stop style="stop-color:#ff0040;stop-opacity:1;" offset="1" id="top" />
+            </linearGradient>
+            <linearGradient xlink:href="#gradient_line_base" id="gradient_line" x1="0" y1="100" x2="0" y2="0" gradientUnits="userSpaceOnUse" />
+	    <linearGradient id="gradient_bg_base">
+              <stop style="stop-color:#131717;stop-opacity:1;" offset="0" id="bottom" />
+              <stop style="stop-color:#2f3336;stop-opacity:1;" offset="0.5" id="middle" />
+              <stop style="stop-color:#131717;stop-opacity:1;" offset="1" id="top" />
+            </linearGradient>
+            <linearGradient xlink:href="#gradient_bg_base" id="gradient_bg" x1="0" y1="100" x2="0" y2="0" gradientUnits="userSpaceOnUse" />
+            <filter id="line_filter" filterUnits="userSpaceOnUse" >
+              <feFlood
+                 id="feFlood863"
+                 flood-color="rgb(127,127,127)" />
+              <feComposite
+                 id="feComposite859"
+                 in2="SourceGraphic"
+                 operator="in" />
+              <feGaussianBlur
+                 stdDeviation="4"
+                 id="feGaussianBlur837"
+                 result="result1" />
+              <feOffset
+                 dx="0"
+                 dy="3"
+                 id="feOffset843"
+                 result="result2"
+                 in="result1" />
+              <feBlend
+                 mode="normal"
+                 in2="result2"
+                 id="feBlend839"
+                 in="SourceGraphic"
+              result="result3" />
+            </filter>
+	  </defs>
+          <rect id="graph_bg" x="0" y="0"/>
+	  
+	  <path id="graph_line" d="M 0,100 100,100"/>
+          
+	  <path id="twohundredfifty" class="unit-lines" d="M -10,22.22 110,22.22"/>
+	  <text class="unit-lines-text" text-anchor="end" x="100" y="21.22">250</text>
+          
+	  <path id="twohundred" class="unit-lines" d="M -10,44.44 110,44.44"/>
+	  <text class="unit-lines-text" text-anchor="end" x="100" y="43.44">200</text>
+
+          <path id="onehundredfifty" class="unit-lines" d="M -10,66.66 110,66.66"/>
+	  <text class="unit-lines-text" text-anchor="end" x="100" y="65.66">150</text>
+
+	  <path id="onehundred" class="unit-lines" d="M -10,88.88 110,88.88"/>
+	  <text class="unit-lines-text" text-anchor="end" x="100" y="87.88">100</text> 
+        </svg>
+      </div>
+      <div id="control_row">
+        <div id="reset_div">
+          <button id="reset" class="reset_btn" type="button">reset</button>
+	</div>
+        <div id="current_reading">
+          current <span id="graph_text">0</span>&deg; F
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
